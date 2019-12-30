@@ -1,0 +1,19 @@
+footer {
+    .text-on-bottom > .button-inner {
+        flex-direction: column;
+      }
+      ion-icon {
+        display: inline-block;
+        font-size: 1.8em;
+      }
+      .button-md{
+        padding: 0px;
+      }
+      .badge-md {
+        border-radius:8px;
+        padding: 1px 4px !important;
+      }
+      .col{
+        text-align: center;
+      }
+}

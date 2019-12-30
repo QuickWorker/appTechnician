@@ -1,0 +1,234 @@
+<ion-header>
+  <header [title]="headerTitle"></header>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="searchType" color="custom">
+    <ion-segment-button value="current">
+      Current Job
+    </ion-segment-button>
+    <ion-segment-button value="completed">
+      Completed
+    </ion-segment-button>
+  </ion-segment>
+  <br>
+  <div [ngSwitch]="searchType">
+    <!-- ------------********** general search result list ***************** -->
+    <div *ngSwitchCase="'current'">
+      <ion-grid *ngFor="let r of requestList">
+        <ion-card *ngIf="r.ja_status!='2'">
+          <ion-card-content>
+            <ion-row>
+              <ion-col col-4>
+                Job Id
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{r.job}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-4>
+                Service
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{r.service}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-4>
+                Sub Service
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{r.sub_service}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-4>
+                Scheduled On
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{r.schedule_date}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-4>
+                Timings
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{r.from_time}} To {{r.to_time}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-4>
+               Address
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{r.location ? r.location : r.address}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-4>
+                Minimum Service Charge
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-3>
+                <p>Rs.{{r.min_charges}}/-</p>
+
+              </ion-col>
+              <ion-col col-4>
+                <button *ngIf="!r.payment" ion-button color="custom" clear (click)="goToPayment(r.id,r.min_charges,'Service minimum charges')">Collect</button>
+                <p style="color:green" *ngIf="r.payment">Paid</p>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="r.payment">
+              <ion-col col-4>
+                Paid Amount
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                <p style="color:#440669">Rs.{{r.payment}}/-</p>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="r.charges">
+              <ion-col col-4>
+                Total Charges
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                <p style="color:#440669">Rs.{{r.charges}}/-
+                </p>
+
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="r.balance">
+              <ion-col col-4>
+                Balance Amount
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-3>
+                <p>Rs.{{r.balance}}/-</p>
+
+              </ion-col>
+              <ion-col col-4>
+                <button *ngIf="r.balance!='0'" ion-button color="custom" clear (click)="goToPayment(r.id,r.balance,'Service balance charges')">Collect</button>
+
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+          <button *ngIf="r.ja_status=='1'" ion-button clear color="custom" float-left (click)="verify(r.id)">Verify Otp</button>
+          <button *ngIf="r.ja_status=='4'" ion-button clear color="custom" float-left (click)="completeJob(r.id)">Completed</button>
+          <button *ngIf="r.latitude && r.longitude" ion-button clear color="custom" float-right (click)="locateCustomer(r.latitude,r.longitude)">
+              <ion-icon name="navigate"></ion-icon>&nbsp;
+            Locate</button>
+        </ion-card>
+      </ion-grid>
+    </div>
+
+    <!-- ------------********** archive search result list ***************** -->
+    <div *ngSwitchCase="'completed'">
+      <div *ngFor="let r of requestList">
+        <!-- <ion-grid > -->
+        <ion-card *ngIf="r.ja_status=='2'">
+          <ion-card-content>
+            <ion-row>
+              <ion-col col-4>
+                Job Id
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{r.job}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-4>
+                Service
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{r.service}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-4>
+                Sub Service
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{r.sub_service}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-4>
+                Scheduled On
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{r.schedule_date}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-4>
+                Charges
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{r.charges}}
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+        <!-- </ion-grid> -->
+      </div>
+    </div>
+  </div>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+</ion-content>
+
+<ion-footer>
+  <footer></footer>
+</ion-footer>

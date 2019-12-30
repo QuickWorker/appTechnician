@@ -1,0 +1,122 @@
+
+<ion-header>
+  <ion-navbar color="custom">
+    <ion-title>OTP</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-card *ngFor="let j of jobDetails">
+          <ion-card-content>
+            <ion-row>
+              <ion-col col-4>
+                Service
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                <span>{{j.service}}</span>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-4>
+                Sub Service
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{j.sub_service}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-4>
+                Name
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{j.contact_name}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-4>
+                Phone
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{j.contact_phone}}
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="j.description">
+              <ion-col col-4>
+                Description
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{j.description}}
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="j.attachment">
+              <ion-col col-4>
+                Attachment
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{j.attachment}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-4>
+                Address
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{j.address}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-4>
+                Scheduled On
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{j.schedule_date}}
+              </ion-col>
+            </ion-row>
+           
+            <ion-row>
+              <ion-col col-4>
+                Status
+              </ion-col>
+              <ion-col col-1>
+                :
+              </ion-col>
+              <ion-col col-7>
+                {{j.current_status}}
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+    
+        </ion-card>
+      </ion-list>
+  <ion-item>
+    <ion-label floating>OTP</ion-label>
+    <ion-input type="number" [(ngModel)]="otp"></ion-input>
+  </ion-item>
+  <br>
+  <button ion-button block color="custom" (click)="submitOtp()">Submit OTP</button>
+</ion-content>

@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar color="custom">
+    <ion-title>Log in</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="!showOtp">
+      <form [formGroup]="numberForm" (ngSubmit)="login()">
+    <ion-item>
+      <ion-label floating>Mobile Number</ion-label>
+      <ion-input type="number" formControlName="number"></ion-input>
+    </ion-item>
+    <br>
+    <button ion-button color="custom" block type="submit" [disabled]="!numberForm.valid">Submit</button>
+    </form>
+  </div>
+
+  <div *ngIf="showOtp">
+    <button ion-button color="custom" clear (click)="hideOtp()" float-right>
+      <ion-icon name='close'></ion-icon>
+    </button>
+    <form [formGroup]="otpForm" (ngSubmit)="submitOtp()">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item class="inputField">
+              <ion-input type="number" formControlName="first" (keyup)="moveFocus(b)"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-3>
+            <ion-item class="inputField">
+              <ion-input type="number" formControlName="second" #b (keyup)="moveFocus(c)"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-3>
+            <ion-item class="inputField">
+              <ion-input type="number" formControlName="third" #c (keyup)="moveFocus(d)" ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-3>
+            <ion-item class="inputField">
+              <ion-input type="number" formControlName="fourth" #d ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <br>
+
+      <button ion-button color="custom" block type="submit" [disabled]="!otpForm.valid">Submit</button>
+    </form>
+
+  </div>
+</ion-content>

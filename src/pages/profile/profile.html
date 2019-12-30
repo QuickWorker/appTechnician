@@ -1,0 +1,123 @@
+<ion-header>
+  <header [title]="headerTitle"></header>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card *ngIf="profileData">
+
+    <ion-item>
+      <ion-avatar item-start>
+        <img *ngIf="profileData.image" src="{{imgurl}}/{{profileData.image}}">
+        <img *ngIf="!profileData.image" src="/assets/images/noimage.jpg ">
+      </ion-avatar>
+      <h2>{{profileData.name}}</h2>
+    </ion-item>
+
+    <ion-card-content>
+      <ion-row>
+        <ion-col col-4>
+          Phone
+        </ion-col>
+        <ion-col col-1>
+          :
+        </ion-col>
+        <ion-col col-7>
+          {{profileData.phone ? profileData.phone : N/A}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          Email
+        </ion-col>
+        <ion-col col-1>
+          :
+        </ion-col>
+        <ion-col col-7>
+          {{profileData.email ? profileData.email : 'N/A'}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          Address
+        </ion-col>
+        <ion-col col-1>
+          :
+        </ion-col>
+        <ion-col col-7>
+          {{profileData.address ? profileData.address : 'N/A'}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          Date of birth
+        </ion-col>
+        <ion-col col-1>
+          :
+        </ion-col>
+        <ion-col col-7>
+          {{profileData.dob ? profileData.dob : 'N/A'}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          Gender
+        </ion-col>
+        <ion-col col-1>
+          :
+        </ion-col>
+        <ion-col col-7>
+          {{profileData.gender ? (profileData.gender=='M' ? 'Male' : 'Female') : 'N/A'}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          Aadhaar
+        </ion-col>
+        <ion-col col-1>
+          :
+        </ion-col>
+        <ion-col col-7>
+          {{profileData.aadhaar ? profileData.aadhaar : 'N/A'}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          Pan Card
+        </ion-col>
+        <ion-col col-1>
+          :
+        </ion-col>
+        <ion-col col-7>
+          {{profileData.pan_card ? profileData.pan_card : 'N/A'}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          Driving License
+        </ion-col>
+        <ion-col col-1>
+          :
+        </ion-col>
+        <ion-col col-7>
+          {{profileData.driving_license ? profileData.driving_license : 'N/A'}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+         Services
+        </ion-col>
+        <ion-col col-1>
+          :
+        </ion-col>
+        <ion-col col-7>
+          {{profileData.servicess ? profileData.servicess : 'N/A'}}
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <footer></footer>
+</ion-footer>

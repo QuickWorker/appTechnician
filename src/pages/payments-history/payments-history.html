@@ -1,0 +1,21 @@
+<ion-header>
+  <header [title]="headerTitle"></header>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card *ngFor="let p of paymentsList">
+    <ion-card-header>
+      <h2> Payment Confirmation</h2>
+      <p>{{p.now}}</p>
+
+    </ion-card-header>
+    <ion-card-content>
+      We have received {{p.description}} Rs.{{p.amount}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <footer></footer>
+</ion-footer>

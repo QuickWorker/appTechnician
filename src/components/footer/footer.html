@@ -1,0 +1,15 @@
+
+<ion-toolbar>
+  <ion-grid>
+    <ion-row text-wrap>
+        <ion-col col-4 *ngFor="let p of pages">
+              <ion-badge *ngIf="chatBadge!='0'">{{p.badge}}</ion-badge>
+            <button ion-button clear (click)="gotoPage(p.component)" class="text-on-bottom">
+                <ion-icon name={{p.icon}} color="custom"></ion-icon>
+                <!-- {{p.title}} -->
+            </button>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  </ion-toolbar>

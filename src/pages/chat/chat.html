@@ -1,0 +1,47 @@
+<ion-header>
+  <header [title]="headerTitle"></header>
+</ion-header>
+
+<ion-content #content padding>
+  <div class="chat-body">
+      <ion-list *ngFor="let userChat of chatData">
+
+          <ion-list *ngIf="userChat.admin_id=='0'">
+              <ion-item no-lines>
+                  <h5 class="senderMsg" item-end> {{userChat.message}}</h5>
+              </ion-item>
+              <ion-item no-lines>
+                  <p item-end>{{userChat.now | date:'medium'}}</p>
+              </ion-item>
+          </ion-list>
+
+          <ion-list *ngIf="userChat.admin_id!='0'">
+              <ion-item no-lines>
+                  <h5 class="receivedMsg" item-start> {{userChat.message}}</h5>
+              </ion-item>
+              <ion-item no-lines>
+                  <p item-start> {{userChat.now | date:'medium'}}</p>
+              </ion-item>
+          </ion-list>
+
+      </ion-list>
+  </div>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="Crescent">
+      </ion-refresher-content>
+  </ion-refresher>
+
+
+
+</ion-content>
+<div class="chat-footer">
+  <ion-item>
+      <ion-textarea type="text" placeholder="Type a message" [(ngModel)]="message"></ion-textarea>
+      <button ion-button icon-only clear item-right type="submit" (click)="sendMsg()" [disabled]="!message" tappable>
+          <ion-icon name="send" color="myblue"></ion-icon>
+      </button>
+  </ion-item>
+</div>
+<ion-footer>
+  <footer></footer>
+</ion-footer>

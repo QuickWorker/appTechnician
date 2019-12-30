@@ -1,0 +1,3 @@
+[submodule "appTechnician"]
+	path = appTechnician
+	url = https://github.com/QuickWorker/appTechnician

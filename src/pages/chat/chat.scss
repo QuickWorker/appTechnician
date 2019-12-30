@@ -1,0 +1,50 @@
+page-chat {
+    .username {
+        color: #afafaf;
+    }
+    .time {
+        color: #afafaf;
+        float: right;
+        font-size: small;
+    }
+    
+    .sendercard{
+        margin: -10px;
+    }
+    .usercard{
+        margin:20px;
+        background-color: khaki;
+        
+    }
+    
+ .chat-body{
+     padding-bottom: 40px
+ }
+        
+        .chat-footer,.chat-footer:focus {
+            position: fixed !important;
+            bottom: 54px !important;
+                        left: 0;
+            width: 100%;
+            z-index: 100;
+            background-color:#ffffff;
+        }
+
+   
+    h5{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #ffffff;
+margin: 10px;
+padding: 10px;
+border-radius: 5px;
+    }
+    .senderMsg{
+        background-color: #0c77bd;
+        color: #ffffff;
+    }
+    
+  
+    .item-md {
+        background: transparent;
+    }
+}
