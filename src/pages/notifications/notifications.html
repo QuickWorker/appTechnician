@@ -4,7 +4,8 @@
 
 
 <ion-content padding>
-  <ion-card *ngFor="let n of notificationsList">
+  <ion-card *ngFor="let n of notificationsList" style="background: #d9cce0;margin: 4px;border-radius: 0px;
+  box-shadow: none;" (click)="gotorequest(n)">
     <ion-card-header>
       <h2>{{n.title}}</h2>
       <p>{{n.date}}</p>
@@ -13,7 +14,7 @@
       {{n.message}}
     </ion-card-content>
   </ion-card>
-
+ 
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"

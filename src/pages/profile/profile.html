@@ -3,8 +3,67 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-card *ngIf="profileData">
+<ion-content padding style="">
+  <div  *ngIf="profileData">
+  <div >
+      <img id="profile-image" *ngIf="profileData.image" src="{{imgurl}}/{{profileData.image}}">
+      <img id="profile-image" *ngIf="!profileData.image" src="/assets/images/noimage.jpg ">
+   
+   
+  </div>
+<div style="margin-top: 15px;font-size:14px">
+  <ion-row style="border-bottom: 1px solid #c8c7cc;
+  padding: 10px;">
+    <ion-col col-4>
+      Name
+    </ion-col>
+    <ion-col col-1>
+      -
+    </ion-col>
+    <ion-col col-7>
+      {{profileData.name ? profileData.name : N/A}}
+    </ion-col>   
+    
+  </ion-row>
+  <ion-row style="border-bottom: 1px solid #c8c7cc;
+  padding: 10px;">
+    <ion-col col-4>
+      Phone
+    </ion-col>
+    <ion-col col-1>
+      -
+    </ion-col>
+    <ion-col col-7>
+      {{profileData.phone ? profileData.phone : N/A}}
+    </ion-col>
+  </ion-row>
+  <ion-row style="border-bottom: 1px solid #c8c7cc;
+  padding: 10px;">
+      <ion-col col-4>
+      Email
+    </ion-col>
+    <ion-col col-1>
+      -
+    </ion-col>
+    <ion-col col-7>
+      {{profileData.email ? profileData.email : 'N/A'}}
+    </ion-col>
+  </ion-row>
+  <ion-row style="border-bottom: 1px solid #c8c7cc;
+  padding: 10px;">
+     <ion-col col-4>
+      Address
+    </ion-col>
+    <ion-col col-1>
+      -
+    </ion-col>
+    <ion-col col-7>
+      {{profileData.address ? profileData.address : 'N/A'}}
+    </ion-col>
+  </ion-row>
+</div>
+</div>
+  <!-- <ion-card *ngIf="profileData">
 
     <ion-item>
       <ion-avatar item-start>
@@ -115,7 +174,7 @@
         </ion-col>
       </ion-row>
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
 </ion-content>
 
 <ion-footer>

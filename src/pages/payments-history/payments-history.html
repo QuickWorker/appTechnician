@@ -4,7 +4,8 @@
 
 
 <ion-content padding>
-  <ion-card *ngFor="let p of paymentsList">
+  <!-- <ion-card *ngFor="let p of paymentsList"  style="background: #d9cce0;margin: 4px;border-radius: 0px;
+  box-shadow: none;">
     <ion-card-header>
       <h2> Payment Confirmation</h2>
       <p>{{p.now}}</p>
@@ -12,6 +13,20 @@
     </ion-card-header>
     <ion-card-content>
       We have received {{p.description}} Rs.{{p.amount}}
+      We have received the minimum payment Rs. 450/-
+    </ion-card-content>
+  </ion-card> -->
+  <ion-card  style="background: #d9cce0;margin: 4px;border-radius: 0px;
+  box-shadow: none;">
+    <ion-card-header style="padding: 10px !important;">
+      <h2 style="font-weight: 500;font-size: 1.4rem;"> Payment Confirmation</h2>
+      <!-- <p>{{p.now}}</p> -->
+
+    </ion-card-header>
+    <ion-card-content style="padding: 4px 9px !important;color: #424242;
+    font-size: 1.3rem;">
+      <!-- We have received {{p.description}} Rs.{{p.amount}} -->
+      We have received the minimum payment Rs. 450/-
     </ion-card-content>
   </ion-card>
 </ion-content>

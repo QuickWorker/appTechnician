@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar color="custom">
     <ion-title>Log in</ion-title>
   </ion-navbar>
@@ -51,4 +51,103 @@
     </form>
 
   </div>
+</ion-content> -->
+
+<!-- <ion-header>
+  <ion-navbar color="custom">
+    <ion-title>Log in</ion-title>
+  </ion-navbar>
+</ion-header> -->
+
+
+
+<ion-content id="loginContent" padding class="login auth-page">
+  <div class="login-content">  
+ <div padding-horizontal text-center>
+   <div class="logo" ></div>
+   <!-- <div class="logootp" *ngIf="showOtp"></div> -->
+
+   <h2 ion-text class="text-primary" style="color :#343434">
+     <strong style="display: inline-block;-webkit-transform: scale(1.3,1);">Quick Worker Vendor</strong>
+   </h2>
+  
+<ion-item *ngIf="showOtp" id="showotpdiv">
+  <ion-row>
+   <strong *ngIf="showOtp" style="color :#343434;font-size: 20px;float: left;;margin-top: 20px;">OTP</strong>
+  </ion-row>
+<ion-row>
+   <span *ngIf="showOtp" style="margin-top: 10px;font-size: 14px;;color:#999 ;">We have sent you a 4 digit verification code </span><br/>
+   <!-- <span *ngIf="!showOtp" style="font-size: 14px;margin-left: -25px;color: black;">{{phoneno}}</span> -->
+  </ion-row>
+  <ion-row>
+<span *ngIf="showOtp" style="font-size: 14px;margin-top: 15px;color: black;">+91{{phoneno}}</span>
+</ion-row>
+</ion-item>
+   
+
+ </div>
+
+ <div *ngIf="!showOtp">
+     <form [formGroup]="numberForm" (ngSubmit)="login()">
+   <ion-item style="background: none !important ;">
+      
+     <ion-label floating style="color:#999;">Mobile Number</ion-label>
+     <ion-input type="number" formControlName="number"></ion-input>
+     <ion-icon *ngIf="numberForm.controls.number.valid" style="margin-top: 33px;color: #440669;font-size: 30px;" name="ios-checkmark" item-right></ion-icon>
+   </ion-item>
+  
+   
+     
+    <!-- <span style="font-size: 10px;margin-left: 16px;color: black;">A 4 digits OTP will be sent via SMS to verify your mobile  </span> -->
+   
+    
+   
+   <button style="margin-top: 70px ;width: 100%; border-radius: 100px  ;height: 50px;;" ion-button color="custom" block type="submit" [disabled]="!numberForm.valid">Sign In</button>
+   <ion-label floating style="color:#999;text-align: center;">All Rights Reserved</ion-label>
+
+   </form>
+
+
+ </div>
+
+ <div *ngIf="showOtp" id="showOtpMaindiv">
+  <!-- <button ion-button color="custom" clear (click)="hideOtp()" float-right>
+    <ion-icon name='close'></ion-icon>
+  </button> -->
+  <form [formGroup]="otpForm" (ngSubmit)="submitOtp()">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item class="inputField">
+            <ion-input class="inputotp"  type="number"  formControlName="first" (keyup)="moveFocus(b)"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item class="inputField">
+            <ion-input class="inputotp"  type="number" formControlName="second" #b (keyup)="moveFocus(c)"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item class="inputField">
+            <ion-input class="inputotp"  type="number" formControlName="third" #c (keyup)="moveFocus(d)" ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item class="inputField">
+            <ion-input class="inputotp"  type="number" formControlName="fourth" #d ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <!-- <span (click)="resendOTP()"  style="font-size: 14px; font-style:bold rgb(153, 59, 30);text-decoration: underline;">
+    Dont receive OTP? Resend
+    </span> -->
+    <br>
+    
+    <button ion-button color="custom" block type="submit" style="border-radius: 100px;height: 50px;" [disabled]="!otpForm.valid">Submit</button>
+  </form>
+
+</div>
+  </div>
+  
 </ion-content>

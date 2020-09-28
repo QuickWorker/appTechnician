@@ -17,7 +17,7 @@ import { UniqueDeviceID } from '@ionic-native/unique-device-id';
  * Manages all methods 
  */
 export class LoginPage {
-
+   phoneno:string=''; 
   /**
 * declaring showOtp
 */
@@ -49,6 +49,8 @@ export class LoginPage {
 *  getting firebase token
 *  generating unique id for device
 */
+
+  hidden:boolean;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -61,6 +63,7 @@ export class LoginPage {
   ) {
     this.numberForm = this.formBuilder.group({
       number: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])]
+
     })
     this.otpForm = this.formBuilder.group({
       first: ['', Validators.compose([Validators.required, Validators.maxLength(1)])],
@@ -99,6 +102,7 @@ export class LoginPage {
 * @returns returns success or failure from server
 */
   login() {
+    this.phoneno=this.numberForm.value.number;
     this.utils.presentLoading();
     this.authService.checkNumber(this.numberForm.value.number, this.fcmToken, this.deviceId).subscribe((result) => {
       this.utils.dismissLoading();
@@ -155,5 +159,18 @@ export class LoginPage {
   hideOtp() {
     this.showOtp = false;
   }
-
+  resendOTP(){
+    var val = Math.floor(1000 + Math.random() * 9000);
+    this.storage.set('otp', val)
+    let msgObj = {
+      action: "sendSms",
+      phone: this.numberForm.value.number,
+      message: "Your otp is " + val
+    }
+    this.utils.presentAlert("Otp", val);
+    // this.authService.sendSms(msgObj).subscribe((result) => {
+    //   // console.log(result)
+    // })
+    this.showOtp = true;
+  }
 }

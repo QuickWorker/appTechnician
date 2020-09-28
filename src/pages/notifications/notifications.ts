@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NotificationServiceProvider } from '../../providers/notification-service/notification-service';
 import { Storage } from '@ionic/storage';
 import { UtilsServiceProvider } from '../../providers/utils-service/utils-service';
+import {ServicerequestPage} from '../servicerequest/servicerequest';
 
 @IonicPage()
 @Component({
@@ -65,12 +66,16 @@ export class NotificationsPage {
       this.notificationService.getNotificationsList(notificationObj).subscribe((result) => {
         this.utils.dismissLoading();
         if (result) {
+          console.log(result.data);
           this.notificationsList = result.data;
         }
 
       })
     })
 
+  }
+  gotorequest(item){
+    this.navCtrl.push("ServicerequestPage",{_notlst:item});
   }
 
   /**

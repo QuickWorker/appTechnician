@@ -22,6 +22,7 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { Network } from '@ionic-native/network';
 import { FCM } from '@ionic-native/fcm';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id';
+import { BehaviourProvider } from '../providers/behaviour/behaviour';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { UniqueDeviceID } from '@ionic-native/unique-device-id';
     LaunchNavigator,
     FCM,
     UniqueDeviceID,
-    Network
+    Network,
+    BehaviourProvider
   ]
 })
 export class AppModule {}

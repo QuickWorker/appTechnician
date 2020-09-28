@@ -1,0 +1,16 @@
+page-servicerequest {
+    .inputField{
+        width: 80%;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      border-radius: 5px;
+    }
+   #otp .item-inner {
+        border-bottom: 0px !important;
+    }
+    .toolbar-title.toolbar-title-md {
+        font-size: 1.5rem;
+    }
+}

@@ -1,10 +1,10 @@
 
-<ion-navbar color="custom">
+<ion-navbar style="background: white;">
   <button ion-button menuToggle>
       <ion-icon name='menu'></ion-icon>
   </button>
   <ion-title>{{title}}</ion-title>
-  <ion-buttons right *ngIf="title=='Profile'">
+  <ion-buttons right *ngIf="title=='Technician Profile'">
       <button ion-button icon-only (click)="logout()">
           <ion-icon name="exit"></ion-icon>
       </button>

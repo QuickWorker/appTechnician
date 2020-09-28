@@ -4,7 +4,10 @@ import { Storage } from '@ionic/storage';
 import { ChatServiceProvider } from '../../providers/chat-service/chat-service';
 import 'rxjs/add/observable/interval';
 import { Observable } from 'rxjs';
+  import { BehaviorSubject } from 'rxjs';
 
+  import { BehaviourProvider } from "../../providers/behaviour/behaviour";
+import { of } from 'rxjs/observable/of';
 @Component({
   selector: 'footer',
   templateUrl: 'footer.html'
@@ -14,6 +17,7 @@ import { Observable } from 'rxjs';
  * Manages all methods 
  */
 export class FooterComponent {
+  selectItem: BehaviorSubject<string>;
 
   /**
 * Value of the chatBadge
@@ -36,7 +40,8 @@ export class FooterComponent {
   constructor(
     public navCtrl: NavController,
     public storage: Storage,
-    public chatService: ChatServiceProvider
+    public chatService: ChatServiceProvider,
+    public beh:BehaviourProvider
   ) {
     this.onPageLoad();
   }
@@ -47,11 +52,23 @@ export class FooterComponent {
 *  @returns The pages with navigation
 */
   onPageLoad() {
+  this.selectItem = this.beh.getfooterSelectItem();
+    
     this.pages = [
-      { title: 'Book Service', component: "ServiceRequestsPage", icon: "home" },
-      { title: 'Chat', component: "ChatPage", icon: "chatboxes", badge: this.chatBadge },
-      { title: 'Profile', component: "ProfilePage", icon: "person" },
+      { id:1,title: 'Book Service', component: "ServiceRequestsPage", icon: "home",color:"cement" },
+      { id:2,title: 'NotificationsPage', component: "NotificationsPage", icon: "ios-apps", badge: this.chatBadge ,color:"cement"},
+
+      { id:2,title: 'Chat', component: "ChatPage", icon: "ios-bookmark", badge: this.chatBadge ,color:"cement"},
+      { id:3,title: 'Profile', component: "ProfilePage", icon: "person" ,color:"cement"},
+      //
     ];
+    
+    var item = this.pages.find(x => x.component == this.selectItem);
+if (item) {
+  item.color = "custom";
+}
+
+    
   }
 
     /**
@@ -84,7 +101,9 @@ export class FooterComponent {
 *  navigating to selected page
 */
   gotoPage(page) {
-    this.navCtrl.setRoot(page)
+    
+    this.beh.updateFooterItem(page.component);
+    this.navCtrl.setRoot(page.component)
   }
 
 

@@ -1,20 +1,24 @@
+<!--
+  Generated template for the CollectCashPage page.
 
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
 <ion-header>
-  <ion-navbar color="custom">
-    <ion-title>Collect Cash</ion-title>
-  </ion-navbar>
+  <header [title]="headerTitle"></header>
 </ion-header>
 
+
 <ion-content padding>
-    <form [formGroup]="cashForm" (ngSubmit)="submitCash()">
-        <ion-item>
-          <ion-label floating>Amount</ion-label>
-          <ion-input type="text" formControlName="amount"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Description</ion-label>
-          <ion-textarea formControlName="description"></ion-textarea>
-        </ion-item>
-        <button ion-button block color="custom" type="submit" [disabled]="!cashForm.valid">Submit</button>
-      </form>
+  <!-- <ion-item class="paddclass"> -->
+    
+    <ion-input placeholder="Amount" class="paddclass" type="number" [(ngModel)]="Amount" ></ion-input>
+  <!-- </ion-item> -->
+  <br>
+  <button ion-button color="custom" block type="submit" style="border-radius: 100px;height: 50px;" (click)="sendPayment()">Submit</button>
+
 </ion-content>
+
+<ion-footer>
+  <footer></footer>
+</ion-footer>

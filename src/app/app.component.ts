@@ -1,11 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform,App,IonicApp,MenuController,AlertController } from 'ionic-angular';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 import { NetworkServiceProvider } from '../providers/network-service/network-service';
 import { FCM } from '@ionic-native/fcm';
-
+import {ServiceRequestsPage} from '../pages/service-requests/service-requests';
 @Component({
   templateUrl: 'app.html'
 })
@@ -43,18 +44,30 @@ export class MyApp {
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
+    public app: App
+    ,public ionicApp: IonicApp,private menuCtrl: MenuController,
+    public alertCtrl: AlertController,
+
+
     public splashScreen: SplashScreen,
     public storage: Storage,
     public fcm: FCM,
-    public networkService: NetworkServiceProvider
+    public networkService: NetworkServiceProvider,
+
   ) {
+
     this.initializeApp();
     this.storage.get('auth').then((auth) => {
       console.log(auth)
       if (auth) {
         this.storage.get('technician_id').then((id) => {
           if (id) {
-            this.rootPage = "ServiceRequestsPage"
+            this.rootPage = "ServiceRequestsPage";
+            
+          }
+          else{
+        this.rootPage = "LoginPage"
+
           }
         })
       } else {
@@ -64,9 +77,15 @@ export class MyApp {
     })
     // used for an example of ngFor and navigation
     this.pages = [
+      { title: 'Customer OTP', component: "NotificationsPage", icon: "grid" },
+      { title: 'Current Service Jobs', component: "NotificationsPage", icon: "compass" },
+      { title: 'Service Jobs History', component: "NotificationsPage", icon: "compass" },
+      { title: 'Chat with Admin', component: "ChatPage", icon: "mail" },
       { title: 'Notifications', component: "NotificationsPage", icon: "notifications" },
-      { title: 'Payments History', component: "PaymentsHistoryPage", icon: "list-box" },
-      // { title: 'Maps', component: "MapsPage", icon: "map" },      
+      { title: 'Collect Cash', component: "CollectCashPage", icon: "pricetag" },      
+      { title: 'Payments History', component: "PaymentsHistoryPage", icon: "card" },
+      { title: 'Logout', component: "LoginPage", icon: "md-log-out" },
+
     ];
 
   }
@@ -97,14 +116,97 @@ export class MyApp {
 
       });
     });
+
+    this.platform.registerBackButtonAction(() => {
+      let nav = this.app.getActiveNav();
+      let view = this.nav.getActive();
+      let page = view ? this.nav.getActive().instance : null;
+      let ready = true;
+      // this.ionicApp._modalPortal.getActive() ||
+      let activePortal = this.ionicApp._loadingPortal.getActive() || this.ionicApp._toastPortal.getActive() || 
+                          this.ionicApp._overlayPortal.getActive() || this.ionicApp._modalPortal.getActive();
+      // if (activePortal) {
+      //   activePortal.dismiss();
+      // } 
+
+      if (activePortal) {
+        ready = false;
+        activePortal.dismiss();
+        activePortal.onDidDismiss(() => { ready = true; });
+        return;
+     }
+
+      // if (this.menuCtrl.isOpen()) {
+      //   this.menuCtrl.close();
+      //   return
+      // }
+
+      if (page && page.isRootPage) {
+        this.myHandlerFunction();
+      }
+      else if (view && view.isOverlay) {
+          this.nav.pop();
+      }
+      if (nav.canGoBack()) { //Can we go back?
+        if(nav.getActive().name=='ServiceRequestsPage'){
+          this.myHandlerFunction();
+        }
+       
+        else{
+          nav.pop();
+        }
+        }
+         else {
+          if(nav.getActive().name !='ServiceRequestsPage')
+            this.nav.push(ServiceRequestsPage);
+            // nav.pop();
+          else
+            this.myHandlerFunction() //Exit from app
+        }
+      }, 1);
+
+
   }
 
+  myHandlerFunction() {
+    let alert = this.alertCtrl.create({
+      title: 'Exit?',
+      message: 'Do you want to exit the app?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Exit',
+          handler: () => {
+            this.platform.exitApp();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
   /**
 * opening page on selection
 */
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
+    if(page.component=="LoginPage"){
+      this.nav.setRoot('LoginPage');
+        this.storage.remove('user_id');
+        this.storage.remove('auth');
+    }
+    else
+    {
     this.nav.setRoot(page.component);
+    }
   }
+
+  // this.navCtrl.setRoot('LoginPage');
+  // this.storage.remove('user_id');
+  // this.storage.remove('auth');
 }

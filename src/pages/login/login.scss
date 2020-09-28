@@ -1,9 +1,112 @@
-page-login {
-    .inputField{
-        width: 100%;
-      margin: 8px 0;
-      display: inline-block;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-    }
+// page-login {
+//     .inputField{
+//         width: 100%;
+//       margin: 8px 0;
+//       display: inline-block;
+//       border: 1px solid #ccc;
+//       box-sizing: border-box;
+//     }
+// }
+// .inputotp input.text-input.text-input-ios {
+//   text-align: center;
+// }
+ion-item#showotpdiv {
+  padding-left: 0px;
+  float: left;
 }
+page-login {
+  .inputField{
+      width: 80%;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+  ion-item.item.item-block.item-md.item-input.item-label-floating.ng-dirty.ng-touched.input-has-value.item-input-has-value.ng-valid {
+    background: none !important;
+}
+.logo {
+  width: 80px;
+  height: 80px;
+  margin: 20px auto 0;
+  //border-radius: 10%;
+  background: url(../assets/images/logo.png) no-repeat;
+  background-size: 100%;
+}
+.logootp {
+  width: 60px;
+  height: 60px;
+  margin: 20px auto 0;
+  //border-radius: 10%;
+  background: url(../assets/images/sms.png) no-repeat;
+  background-size: 100%;
+}
+  #loginContent .scroll-content {
+    padding-bottom: 0px !important ;
+  }
+  ion-item.item.item-block.item-ios {
+    padding-left: 0px;
+}
+#showotpdiv .item-inner {
+  border-bottom: none !important;
+}
+#showOtpMaindiv .item-inner {
+  border-bottom: none !important;
+} 
+// style for auth pages
+.auth-page {
+background-color: #fff;
+&::after {
+  content: "";
+  // background: url("../assets/images/bg.png") no-repeat;
+  background-size: cover;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: 0;
+}
+
+  .scroll-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //background: rgba(50, 10, 92, .4);
+
+  .login-content {
+    width: 86%;
+    // margin-top: 40px;
+
+   
+    .list-form {
+      padding: 0;
+      margin-bottom: 0;
+
+      ion-item {
+        background: none;
+        padding: 0;
+
+        &:first-child {
+          border-top: none;
+        }
+
+        &:after {
+          display: none;
+        }
+
+        ion-label {
+          font-size: 1em;
+          color: color($colors, primary);
+        }
+
+        input {
+          color: color($colors, primary);
+        }
+      }
+    }
+  }
+}
+}
+} 

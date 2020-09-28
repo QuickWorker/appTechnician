@@ -42,7 +42,7 @@ export class ProfilePage {
     public utils: UtilsServiceProvider,
     public storage: Storage,
   ) {
-    this.headerTitle = "Profile";
+    this.headerTitle = "Technician Profile";
   }
 
   /**
@@ -67,7 +67,7 @@ export class ProfilePage {
         id: id
       }
       this.profileService.getProfile(profileObj).subscribe((result) => {
-        this.utils.dismissLoading();
+       this.utils.dismissLoading();
         if (result) {
           this.profileData = result.data;
         }

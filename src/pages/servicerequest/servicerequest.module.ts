@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { CollectCashPage } from './collect-cash';
+import { ServicerequestPage } from './servicerequest';
 import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   declarations: [
-    CollectCashPage,
+    ServicerequestPage,
   ],
   imports: [
-    IonicPageModule.forChild(CollectCashPage),
+    IonicPageModule.forChild(ServicerequestPage),
     ComponentsModule
 
   ],
 })
-export class CollectCashPageModule {}
+export class ServicerequestPageModule {}

@@ -1,0 +1,85 @@
+<!--
+  Generated template for the ServicerequestPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <header [title]="headerTitle"></header>
+</ion-header>
+
+
+
+<ion-content padding>
+  <ion-card  style="background: #d9cce0;margin: 4px;border-radius: 0px;box-shadow: none;">
+    <ion-card-header>
+      <span style="color: black;font-weight: 500;font-size: 16px;">Service Name:</span>
+      <p style="color: #565555;font-size: 14px;"> {{_message}}</p>
+ 
+      <span style="color: black;font-weight: 500;font-size: 16px;">Date & Time</span>
+     <p style="color: #565555;font-size: 14px;"> {{_date | date: 'short' }}</p>
+      
+      <!-- <h2>{{_title}}</h2>
+      <p>{{_date}}</p> -->
+    </ion-card-header>
+ 
+  </ion-card>
+  <form [formGroup]="requestForm" style="margin-top: -20px;" (ngSubmit)="startUploading()">
+    <img src={{profileImage}}>
+  <ion-item>
+    <ion-label floating>Customer Name</ion-label>
+    <ion-input type="text" formControlName="name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Phone Number</ion-label>
+    <ion-input type="number" formControlName="phone"></ion-input>
+  </ion-item>
+ 
+ 
+  <ion-item>
+    <ion-label floating>Address</ion-label>
+    <ion-textarea formControlName="address"></ion-textarea>
+  </ion-item>
+  
+  <ion-item  id="otp">
+    <span style="color: #440669;">Customer OTP</span>
+
+    <ion-grid>
+
+      <ion-row>
+        <ion-col>
+          <ion-item class="inputField">
+            <ion-input class="inputotp"  type="number"  formControlName="first" (keyup)="moveFocus(b)"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item class="inputField">
+            <ion-input class="inputotp"  type="number" formControlName="second" #b (keyup)="moveFocus(c)"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item class="inputField">
+            <ion-input class="inputotp"  type="number" formControlName="third" #c (keyup)="moveFocus(d)" ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item class="inputField">
+            <ion-input class="inputotp"  type="number" formControlName="fourth" #d ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+
+
+  <br>
+  <button ion-button color="custom" block type="submit" style="border-radius: 100px;height: 50px;" [disabled]="!requestForm.valid">Submit</button>
+
+  
+</form>
+</ion-content>
+
+
+  <ion-footer>
+    <footer></footer>
+  </ion-footer>
